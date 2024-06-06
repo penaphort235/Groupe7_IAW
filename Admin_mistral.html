@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin_mistral</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+
+        <div id="div1">
+
+            <h2 >Mistral-NG</h2>
+            <h3 style="position: absolute; top: 10%; left: 1%; background-color: cornflowerblue; width:370px;height: 37px; text-align: center; padding-top: 2px; font-size: 20pt;">Activity</h3>
+            <h3 style="position: absolute; top: 10%; left: 28.1%; background-color: cornflowerblue; width:1000px;height: 37px; text-align: center; padding-top: 2px; font-size: 20pt;">View</h3>
+
+            <div id="div2">
+
+        
+                <h4 onclick="affiche(1)" id="h1">Manage price</h4><br>
+                <h4 onclick="affiche(2)" id="h2">Validate booking</h4><br>
+                <h4 onclick="affichertable()" id="h3">Show Table</h4><br>
+                <h4 onclick="quitter()" id="h4">Exit</h4>
+
+            </div>
+
+            <div id="div3"></div>
+            
+            
+            
+        
+        </div>
+        <div id="tablediv" style="display: none; z-index: 1;"></div>
+            
+        <script>
+
+function affichertable() {
+    const tableDiv = document.getElementById("tablediv");
+    tableDiv.style.display = "block";
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'requete.php'); // Remplacez par l'URL de votre requête PHP
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      const columnNames = response.columnNames;
+      const data = response.data;
+
+      let tableHTML = '<table>';
+
+      // Générer les en-têtes de colonne
+      tableHTML += '<tr>';
+      for (const columnName of columnNames) {
+        tableHTML += `<th>${columnName}</th>`;
+      }
+      tableHTML += '</tr>';
+
+      // Générer les lignes de données
+      for (const row of data) {
+        tableHTML += '<tr>';
+        for (const value of row) {
+          tableHTML += `<td>${value}</td>`;
+        }
+        tableHTML += '</tr>';
+      }
+
+      tableHTML += '</table>';
+      tableDiv.innerHTML = tableHTML;
+    } else {
+      console.error('Erreur lors de la récupération des données');
+    }
+  };
+  xhr.send();
+
+ 
+}
+            
+            function affiche(num){
+                const div3 = document.getElementById("div3");
+                div3.innerHTML = "";
+                if(num ===1){
+                const formulaireGestionprix = `
+                    <form action="reservation.php" method="post">
+                    <input type="text" id="destination" name="destination" placeholder="Destination"><br><br>
+                    <label for="premiereo" style="position: absolute; left: 50%; top: 10%; font-size: 23px; color: black;">First opportunity</label>
+                    <input type="time" id="premiereo" name="premiere"><br><br>
+                    <label for="deuxiemeo" style="position: absolute; left: 50%; top: 28%; font-size: 23px; color: black;">Second opportunity</label>
+                    <input type="time" id="deuxiemeo" name="deuxieme"><br><br>
+                    <label for="deuxiemeo" style="position: absolute; left: 50%; top: 46%; font-size: 23px; color: black;">Third opportunity</label>
+                    <input type="time" id="troisiemeo" name="troisieme"><br><br>
+                    <input type="number" id="classic" name="classic" placeholder="Classic"><br><br>
+                    <input type="number" id="confort" name="confort" placeholder="Confort"><br><br>
+
+                    <input type="submit" id="enregistrer" name="enregistrerm" value="Save">
+                    <input type="submit" id="modifier" name="modifier" value="Update">
+                    </form>
+                    `; 
+                div3.innerHTML = formulaireGestionprix;
+            
+                }
+                else if(num ===2){
+                    const formulaireValidationReservation = ` <form action="reservation.php" method="post">
+                    <input type="number" id="numero" name="telephone" placeholder="Téléphone" style="position: absolute; left: 12%; top: 20%;">
+                    <input type="submit" id="vaider" name="valider" value="Validate" style="position: absolute; left: 50%; top: 20%;">
+                </form> `;
+                div3.innerHTML = formulaireValidationReservation;
+                }
+                
+
+            }
+            function quitter(){
+                window.location.href="accueil.html"
+            }
+
+            
+
+        </script>
+    </body>
+    <style>
+        body{
+            background-color: rgb(62, 62, 96);
+        }
+        
+        #div1{
+            position: absolute;
+            background-color:white;
+            width: 1400px;
+            height: 600px;
+            left: 5.7%;
+            bottom: 10%;
+        }
+
+        #div2{
+            position: absolute;
+            background-color: rgb(195, 213, 243);
+            left: 1%;
+            top: 22.5%;
+            width: 370px;
+            height: 450px;
+
+        }
+       
+        
+        
+
+
+
+
+
+
+        h4{
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow O.3s ease;
+        }
+        h4:hover{
+            color:darkblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+       
+        #h1{
+            position: absolute;
+            background-color: cornflowerblue;
+            color: black;
+            font-size: 25px;
+            width: 250px;
+            height: 45px;
+            left: 5%;
+            top: 4%;
+            text-align: center;
+            padding-top: 7px;
+
+        }
+        #h2{
+            position: absolute;
+            background-color: cornflowerblue;
+            color: black;
+            font-size: 25px;
+            width: 250px;
+            height: 45px;
+            left: 5%;
+            top: 20%;
+            text-align: center;
+            padding-top: 7px;
+
+        }
+
+        #h3{
+            position: absolute;
+            background-color: cornflowerblue;
+            color: black;
+            font-size: 25px;
+            width: 250px;
+            height: 45px;
+            left: 5%;
+            top: 36%;
+            text-align: center;
+            padding-top: 7px;
+
+        }
+
+        #h4{
+            position: absolute;
+            background-color: cornflowerblue;
+            color: black;
+            font-size: 25px;
+            width: 250px;
+            height: 45px;
+            left: 5%;
+            top: 52%;
+            text-align: center;
+            padding-top: 7px;
+
+        }
+        
+
+        #div3{
+            position: absolute;
+            background-color: rgb(195, 213, 243);
+            left: 28.1%;
+            top: 22.5%;
+            width: 1000px;
+            height: 450px;
+
+        }
+        h2{
+            position: absolute;
+            background-color: cornflowerblue;
+            width:1400px;
+            height: 50px;
+            top: -4%;
+            text-align: center;
+            padding-top: 13px;
+            font-size: 40px;
+
+        }
+        input{
+            background-color: cornflowerblue;
+            font-size: 23px;
+        }
+        #destination{
+            position: absolute;
+            left: 3%;
+            top: 10%;
+
+        }
+        #classic{
+            position: absolute;
+            left: 3%;
+            top: 28%;
+
+        }
+        #confort{
+            position: absolute;
+            left: 3%;
+            top: 46%;
+
+        }
+        #premiereo{
+            position: absolute;
+            left: 77%;
+            top: 10%;
+        }
+
+        #deuxiemeo{
+            position: absolute;
+            left: 77%;
+            top: 28%;
+        }
+        #troisiemeo{
+            position: absolute;
+            left: 77%;
+            top: 46%;
+        }
+        #enregistrer{
+            position: absolute;
+            left: 70%;
+            top: 76%;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow O.3s ease;
+        }
+
+        #enregistrer:hover{
+            color:darkblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+        #modifier{
+            position: absolute;
+            left: 80%;
+            top: 76%;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow O.3s ease;
+        }
+        #modifier:hover{
+            color:darkblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+    </style>
+    
+
+
+       
+</html>

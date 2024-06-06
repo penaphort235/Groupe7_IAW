@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Booking Opportunity</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div class="principale" style="position: relative;"> 
+            <img src="accueil.jpg" alt="mon image">
+            <div class="tabs"  style="position: absolute; top: 10px; left: 900px; display: flex;">
+                <h3 id="bouttons"><button class="tablinks" onclick="openTab(event, 'accueil')">Accueil</button>
+                    <button class="tablinks" onclick="openTab(event, 'agence')">Agency</button>
+                    <button class="tablinks" onclick="openTab(event, 'gare')">Station</button>
+                    <button class="tablinks" onclick="openTab(event, 'aéroport')">Airport</button>
+                    <button class="tablinks" onclick="openTab(event, 'managers')">Managers</button>
+                </h3>
+            </div>
+            <h2>OnlineBooking.</h2>
+            <div>
+                <h1 id="explore">Explore</h1><br>
+                <h5 id="book">Your online booking opportunity in Ngaoundere</h5>
+            </div>
+            <div id="bloc">
+                <h5 id="txt">See the  great offers from our travel agencies</h5> <br>
+                <h4 id="h3check">I want to see the offers of:</h4> <br>
+                <h4 id="recherche" onclick="tableau(1)">Touristique</h4>
+                <h4 id="submitsearch" onclick="tableau(2)">Mistral</h4>
+                
+                <div id="bacg">
+                    <img src="avion.jpg" alt="" id="avion">
+                    <img src="bus.jpg" alt="" id="bus">
+                    <img src="bus2.jpg" alt="" id="bus2">
+                    <img src="train.jpg" alt="" id="train">
+                </div>
+            </div>
+            <div id="result" class="hidden">
+
+            </div>
+
+
+        </div>
+        <div>
+        <div id="accueil" class="tabcontent active" style="position: relative";>
+                <!-- Ajoutez le contenu de l'accueil ici -->
+            </div>
+            
+            <div id="agence" class="tabcontent" style="position: absolute; overflow: scroll; height: 100px; top: 120px; left: 1000px; display: none;">
+                <ul id="agenceListe">
+                    <li onclick="afficherInfosAgence(1)">TOURISTIQUE-NG</li><br>
+                    <li onclick="afficherInfosAgence(2)">DANAY-NG</li><br>
+                    <li onclick="afficherInfosAgence(3)">MISTRAL-NG</li><br>
+                    <li onclick="afficherInfosAgence(4)">NATIONAL-NG</li>
+                    <!-- Ajoutez d'autres agences si nécessaire -->
+                </ul>
+            </div>
+            
+            <div id="gare" class="tabcontent" style="position: absolute; top: 120px; left: 1100px;display: none ;">
+                <!-- Ajoutez le contenu de la gare -->
+                <ul id="gareListe">
+                    <li onclick="afficherGare(1)">CamR_ail-NG</li>
+                </ul>
+                
+
+            </div>
+            <div id="aéroport" class="tabcontent" style="position: absolute; top: 120px; left: 1100px;display: none ;">
+                <!-- Ajoutez le contenu de la gare -->
+                <ul id="aeroportListe">
+                    <li onclick="afficherAéroport(1)">Aéroport-NG</li>
+                </ul>
+            
+
+            </div>
+
+            <div id="managers" class="tabcontent" style=" position: absolute; overflow:scroll; top: 120px; left: 1100px; display: none; z-index: 1;">
+                <!-- Ajoutez le contenu de managers -->
+                <ul>
+                    <li onclick="gerer(1)">For Touristique</li><br>
+                    <li onclick="gerer(2)">For Mistral</li>
+                </ul>
+                
+            </div>
+
+            <div id="infosAgenceContainer">
+                <a href="accueil.html"> <img src="annule.jpg" id="imgannule" alt=""> </a>
+                <div id="infosAgence" style="position: relative;"></div>
+            </div>
+            
+
+
+
+            <div id="table" style="position: absolute; z-index: 1; top: 30%; left: 15%; display: none;" class="tableau">
+                <h1 style="position: absolute; top: -85%; color: white;">Les offres de Touristique</h1>
+                
+            <table>
+                <thead>
+                    <tr>
+                        <th>Destination</th>
+                        <th>Prémiere Occasion</th>
+                        <th>Deuxieme Occasion</th>
+                        <th>Troisième Occasion</th>
+                        <th>Prix Classic</th>
+                        <th>Prix Confort</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Maroua</td>
+                        <td>06h:00</td>
+                        <td>12h:00</td>
+                        <td>15h:00</td>
+                        <td>10.000FCFA</td>
+                        <td>12.000FCFA</td>
+                    </tr>
+                    <tr>
+                        <td>Yaoundé</td>
+                        <td>06h:00</td>
+                        <td>13h:00</td>
+                        <td>15h:00</td>
+                        <td>15.000FCFA</td>
+                        <td>20.000FCFA</td>
+                    </tr>
+                    <tr>
+                        <td>Douala</td>
+                        <td>06h:30</td>
+                        <td>13h:00</td>
+                        <td>17h:00</td>
+                        <td>18.000FCFA</td>
+                        <td>22.000FCFA</td>
+                    </tr>
+            </table>
+            <h5 style="position: absolute; font-size: 20px; left: 90%;" onclick="fermer()">Fermer</h5>
+            </div>
+
+
+            <div id="table1" style="position: absolute; z-index: 1; top: 30%; left: 15%; display: none;" class="tableau">
+                <h1 style="position: absolute; top: -85%; color: white;">Les offres de Mistral</h1>
+        
+            <table style="">
+                <thead>
+                    <tr>
+                        <th>Destination</th>
+                        <th>Prémiere Occasion</th>
+                        <th>Deuxieme Occasion</th>
+                        <th>Troisième Occasion</th>
+                        <th>Prix Classic</th>
+                        <th>Prix Confort</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Maroua</td>
+                        <td>06h:00</td>
+                        <td>12h:00</td>
+                        <td>15h:00</td>
+                        <td>10.000FCFA</td>
+                        <td>12.000FCFA</td>
+                    </tr>
+                    <tr>
+                        <td>Yaoundé</td>
+                        <td>06h:00</td>
+                        <td>13h:00</td>
+                        <td>15h:00</td>
+                        <td>15.000FCFA</td>
+                        <td>20.000FCFA</td>
+                    </tr>
+                    <tr>
+                        <td>Douala</td>
+                        <td>06h:30</td>
+                        <td>13h:00</td>
+                        <td>17h:00</td>
+                        <td>18.000FCFA</td>
+                        <td>22.000FCFA</td>
+                    </tr>
+                
+            </table>
+            <h5 style="position: absolute; font-size: 20px; left: 90%;" onclick="fermer()">Fermer</h5>
+            </div>
+
+
+
+
+ 
+    <script>
+        function fermer(){
+            document.getElementById('explore').style.display="block";
+            document.getElementById('book').style.display="block";
+            document.getElementById('txt').style.display="block";
+            document.getElementById('h3check').style.display="block";
+            document.getElementById('table1').style.display="none";
+            document.getElementById('table').style.display="none";
+        }
+        function tableau(num){
+            if(num===1){
+            
+            document.getElementById('explore').style.display="none";
+            document.getElementById('book').style.display="none";
+            document.getElementById('txt').style.display="none";
+            document.getElementById('h3check').style.display="none";
+            document.getElementById('table1').style.display="none";
+            document.getElementById('table').style.display="block";
+            }
+            else if(num===2){
+                document.getElementById('explore').style.display="none";
+                document.getElementById('book').style.display="none";
+            document.getElementById('txt').style.display="none";
+            document.getElementById('h3check').style.display="none";
+            document.getElementById('table').style.display="none";
+            document.getElementById('table1').style.display="block";
+            }
+            
+        }
+
+        function gerer(numg){
+            if(numg == 1){
+                window.location.href="Login.php";
+            }
+            if(numg==2){
+                window.location.href="Login.php";
+            }
+        }
+        function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.classList.add("active");
+
+    if ((tabName === "accueil")||(tabName === "agence")||(tabName === "gare") ||(tabName === "aéroport")||(tabName === "managers")) {
+        document.getElementById("infosAgenceContainer").style.display = "none";
+        document.getElementById("agenceListe").style.display = "block";
+    }
+}
+
+function afficherInfosAgence(numeroAgence) {
+    // Cacher la liste des agences
+    document.getElementById("agenceListe").style.display = "none";
+    // Afficher le container pour le texte et le formulaire
+    
+    if(numeroAgence === 1){
+        // Cacher la liste des agences
+        document.getElementById("agenceListe").style.display = "none";
+        var infosAgenceContainer = document.getElementById("infosAgenceContainer");
+        infosAgenceContainer.style.display = "block";
+        var infosAgence = document.getElementById("infosAgence");
+        // Afficher le texte "Réservation"
+        infosAgence.innerHTML = "<h3>Booking---Touristique</h3>";
+        // Ajouter un formulaire de réservation
+        infosAgence.innerHTML += `
+        <form action="reservation.php" method="post">
+                <input type="text" id="nom" name="nom" placeholder="Name and First name"><br><br>
+                <input type="number" id="telephone" name="telephone" placeholder="Phone number" required><br><br>
+                <select name="destination" id="destination" aria-placeholder="">
+                    <option value="Yaoundé">Yaoundé</option>
+                    <option value="Douala">Douala</option>
+                    <option value="Maroua">Maroua</option>
+                </select><br><br>
+                <select name="occasion" id="occasion" aria-placeholder="">
+                    <option value="First Opportynity">First Opportynity</option>
+                    <option value="Second Opportynity">Second Opportynity</option>
+                    <option value="Third Opportynity">Third Opportynity</option>
+                </select><br><br>
+                <input type="number" id="label" name="place" placeholder="Nombre de Places"><br><br>
+                <select name="type" id="type">
+                    <option value="Classic">Classic</option>
+                    <option value="Confort">Confort</option>
+                </select><br><br>
+                <input type="number" id="transaction" name="transaction" placeholder="Transaction Number" required><br><br>
+                <input type="montant" id="montant" name="montant" placeholder="Rising" required><br><br>
+                <input type="submit" id="envoyer" name="envoyert" value="Send">
+                <input type="submit" id="annuler" name="annulert" value="Cancel">
+            </form>
+    `;
+    }
+    if(numeroAgence === 2){
+        var infosAgenceContainer = document.getElementById("infosAgenceContainer");
+        infosAgenceContainer.style.display = "block";
+        var infosAgence = document.getElementById("infosAgence");
+        // Afficher le texte "Réservation"
+        infosAgence.innerHTML = "<h3>Booking---Danay</h3>";
+        // Ajouter un formulaire de réservation
+        infosAgence.innerHTML += `
+        <form action="reservation.php" method="post">
+                <input type="text" id="nom" name="nom" placeholder="Name and First name"><br><br>
+                <input type="number" id="telephone" name="telephone" placeholder="Phone number" required><br><br>
+                <input type="text" id="destination" name="destination" placeholder="Destination"><br><br>
+                <select name="occasion" id="occasion" aria-placeholder="">
+                    <option value="First Opportynity">First Opportynity</option>
+                    <option value="Second Opportynity">Second Opportynity</option>
+                    <option value="Third Opportynity">Third Opportynity</option>
+                </select><br><br>
+                <input type="number" id="label" name="place" placeholder="Nombre de Places"><br><br>
+                <select name="type" id="type">
+                    <option value="classic">Classic</option>
+                    <option value="Confort">Confort</option>
+                </select><br><br>
+                <input type="number" id="transaction" name="transaction" placeholder="Transaction Number" required><br><br>
+                <input type="montant" id="montant" name="montant" placeholder="Rising" required><br><br>
+                <input type="submit" id="envoyer" name="envoyert" value="Send">
+                <input type="submit" id="annuler" name="annulert" value="Cancel">
+            </form>
+    `;
+    }
+    if(numeroAgence === 3){
+        var infosAgenceContainer = document.getElementById("infosAgenceContainer");
+        infosAgenceContainer.style.display = "block";
+        var infosAgence = document.getElementById("infosAgence");
+        // Afficher le texte "Réservation"
+        infosAgence.innerHTML = "<h3>Booking---Mistral</h3>";
+        // Ajouter un formulaire de réservation
+        infosAgence.innerHTML += `
+        <form action="reservation.php" method="post">
+                <input type="text" id="nom" name="nom" placeholder="Name and First name"><br><br>
+                <input type="number" id="telephone" name="telephone" placeholder="Phone number" required><br><br>
+                <input type="text" id="destination" name="destination" placeholder="Destination"><br><br>
+                <select name="occasion" id="occasion" aria-placeholder="">
+                    <option value="First Opportynity">First Opportynity</option>
+                    <option value="Second Opportynity">Second Opportynity</option>
+                    <option value="Third Opportynity">Third Opportynity</option>
+                </select><br><br>
+                <input type="number" id="label" name="place" placeholder="Nombre de Places"><br><br>
+                <select name="type" id="type">
+                    <option value="classic">Classic</option>
+                    <option value="Confort">Confort</option>
+                </select><br><br>
+                <input type="number" id="transaction" name="transaction" placeholder="Transaction Number" required><br><br>
+                <input type="montant" id="montant" name="montant" placeholder="Rising" required><br><br>
+                <input type="submit" id="envoyer" name="envoyerm" value="Send">
+                <input type="submit" id="annuler" name="annulerm" value="Cancel">
+            </form>
+    `;
+    }
+    if(numeroAgence === 4){
+        var infosAgenceContainer = document.getElementById("infosAgenceContainer");
+        infosAgenceContainer.style.display = "block";
+        var infosAgence = document.getElementById("infosAgence");
+        // Afficher le texte "Réservation"
+        infosAgence.innerHTML = "<h3>Booking---National</h3>";
+        // Ajouter un formulaire de réservation
+        infosAgence.innerHTML += `
+        <form action="reservation.php" method="post">
+                <input type="text" id="nom" name="nom" placeholder="Name and First name"><br><br>
+                <input type="number" id="telephone" name="telephone" placeholder="Phone number" required><br><br>
+                <input type="text" id="destination" name="destination" placeholder="Destination"><br><br>
+                <select name="occasion" id="occasion" aria-placeholder="">
+                    <option value="First Opportynity">First Opportynity</option>
+                    <option value="Second Opportynity">Second Opportynity</option>
+                    <option value="Third Opportynity">Third Opportynity</option>
+                </select><br><br>
+                <input type="number" id="label" name="place" placeholder="Nombre de Places"><br><br>
+                <select name="type" id="type">
+                    <option value="classic">Classic</option>
+                    <option value="Confort">Confort</option>
+                </select><br><br>
+                <input type="number" id="transaction" name="transaction" placeholder="Transaction Number" required><br><br>
+                <input type="montant" id="montant" name="montant" placeholder="Rising" required><br><br>
+                <input type="submit" id="envoyer" name="envoyert" value="Send">
+                <input type="submit" id="annuler" name="annulert" value="Cancel">
+            </form>
+    `;
+    }
+    
+}
+function afficherGare(numeroGare) {
+    // Cacher la liste des gares
+    document.getElementById("gareListe").style.display = "none";
+    // Afficher le container pour le texte et le formulaire
+    
+    if(numeroGare === 1){
+        // Cacher la liste des Gares
+        document.getElementById("gareListe").style.display = "none";
+        var infosAgenceContainer = document.getElementById("infosAgenceContainer");
+        infosAgenceContainer.style.display = "block";
+        var infosAgence = document.getElementById("infosAgence");
+        // Afficher le texte "Réservation"
+        infosAgence.innerHTML = "<h3>Booking---CamRail-NG</h3>";
+        // Ajouter un formulaire de réservation
+        infosAgence.innerHTML += `
+        <form action="reservation.php" method="post">
+                <input type="text" id="nom" name="nom" placeholder="Name and First name"><br><br>
+                <input type="number" id="telephone" name="telephone" placeholder="Phone number"><br><br>
+                <input type="text" id="destination" name="destination" placeholder="Destination"><br><br>
+                <input type="number" id="occasion" name="numtransa" placeholder="Number Transaction"><br><br>
+                <select name="occasion" id="label" aria-placeholder="">
+                    <option value="premiere">First Opportynity</option>
+                    <option value="deuxieme">Second Opportynity</option>
+                    <option value="troisieme">Third Opportynity</option>
+                </select><br><br>
+                <input type="number" id="type" name="montant" placeholder="Rising"><br><br>
+                <input type="submit" id="envoyer" name="envoyerc" value="Send">
+                <input type="submit" id="annuler" name="annulerc" value="Cancel">
+            </form>
+    `;
+    }
+}
+function afficherAéroport(numeroAeroport) {
+    document.getElementById("aeroportListe").style.display = "none";
+    if(numeroAeroport === 1){
+        document.getElementById("aeroportListe").style.display = "none";
+        var infosAgenceContainer = document.getElementById("infosAgenceContainer");
+        infosAgenceContainer.style.display = "block";
+        var infosAgence = document.getElementById("infosAgence");
+        infosAgence.innerHTML = "<h3>Booking---Aéroport-NG</h3>";
+        infosAgence.innerHTML += `
+        <form action="reservation.php" method="post">
+                <input type="text" id="nom" name="nom" placeholder="Name and First name"><br><br>
+                <input type="number" id="telephone" name="telephone" placeholder="Phone number"><br><br>
+                <input type="text" id="destination" name="destination" placeholder="Destination"><br><br>
+                <select name="occasion" id="occasion" aria-placeholder="">
+                    <option value="premiere">First Opportynity</option>
+                    <option value="deuxieme">Second Opportynity</option>
+                    <option value="troisieme">Third Opportynity</option>
+                </select><br><br>
+                <input type="submit" id="envoyer" name="envoyera" value="Send">
+                <input type="submit" id="annuler" name="annulera" value="Cancel">
+            </form>
+    `;
+    }
+}
+// Afficher initialement le contenu de la page d'accueil
+document.getElementById("accueil").style.display = "block";
+document.querySelector(".tablinks").classList.add("active");
+
+</script>
+        
+    </body>
+    <style>
+table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 5px solid rgb(239, 179, 179);
+            padding: 8px;
+            text-align: center;
+            color:black;
+            background-color: darkgray;
+            
+        }
+        th{
+            background-color: white;
+            color: black;
+        }
+
+        body{
+            background-color: rgb(240, 240, 240);
+        }
+        .principale{
+            position: absolute;
+            left: 2%;
+            top: 20%;
+        }
+        #bacg{
+            position: absolute;
+            background-color: #fff;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            z-index: 1;
+            width: 502px;
+            height: 300px;
+            left: 63%;
+            top: 444%;
+        }
+       
+        #bus{
+            position: absolute;
+            width: 150px;
+            height: 80px;
+            left: 12%;
+            top: 30%;
+        }
+        #bus2{
+            position: absolute;
+            width: 150px;
+            height: 80px;
+            left: 60%;
+            top: 30%;
+        }
+        #avion{
+            position: absolute;
+            width: 158px;
+            height: 80px;
+            left: 35%;
+            top: 5%;
+            border-radius: 15px;
+        }
+        #train{
+            position: absolute;
+            height: 128px;
+            width: 502px;
+            top: 57%;
+        }
+        h2{
+            position: absolute;
+            left: 5px;
+            top: 40px;
+            z-index: 1;
+            font-family:'Times New Roman', Times, serif;
+
+        }
+        h1{
+            position: absolute;
+            z-index: 1;
+            left: 30px;
+            font-size: 60px;
+            color: #fff;
+            top: 95px;
+            font-family:'Times New Roman', Times, serif;
+
+        }
+        #book{
+            position: absolute;
+            left: 5%;
+            z-index: 1;
+            top: 140px;
+            font-size: 40px;
+            color: #fff;
+            font-family:'Times New Roman', Times, serif;
+
+        }
+        #h3check{
+            position: absolute;
+            width: 237px;
+            text-align: center;
+            height: 39px;
+            left: 4%;
+            padding-top:20px;
+            font-size: 15px;
+            z-index: 1;
+            top: 380px;
+            background-color: #ddd;
+            font-family:'Times New Roman', Times, serif;
+
+        }
+        #recherche{
+            position: absolute;
+            top:375px;
+            left: 20%;
+            font-size:30px;
+            font-family:'Times New Roman', Times, serif;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow O.3s ease;
+        }
+        #recherche:hover{
+            color:darkblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+
+        }
+        #search{
+            position: absolute;
+            border-radius: 0%;
+            font-size: 15px;
+            width: 237px;
+            background-color: #ddd;
+            height: 60px;
+        }
+        #submitsearch{
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow O.3s ease;
+            position: absolute;
+            border-radius: 0%;
+            left: 35%;
+            top:375px;
+            font-size:30px;
+
+        }
+        #submitsearch:hover{
+            color:darkblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+
+        }
+
+        #txt{
+            position: absolute;
+            z-index: 1;
+            left: 5%;
+            top: 250px;
+            font-size: 30px;
+            color: #fff;
+            font-family:'Times New Roman', Times, serif;
+
+
+        }
+        h3{
+            text-align: center;
+            color: black;
+            font-size: 40px;
+            font-family:'Times New Roman', Times, serif;
+
+        }
+        li{
+            background-color:darkgrey;
+            height: 35px;
+            width: 157px;
+            padding-top: 12px;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        img{
+            position: absolute;
+            width: 1500px;
+            height: 500px;
+            top: 40px;
+
+
+        }
+        /* Cache tous les contenus sauf celui avec la classe "active" */
+.tabcontent {
+    display: none;
+}
+
+/* Affiche le contenu actif */
+.tabcontent.active {
+    display: block;
+}
+.tabs{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.tabcontent{
+    display: none;
+}
+.tabcontent.active{
+    background-color: #ddd;
+}
+/* Style des onglets */
+.tablinks {
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-left: 5px;
+    border-radius: 5px 5px 0 0;
+ /* Ajoute une marge à droite pour espacer les onglets */
+}
+
+/* Style du dernier onglet pour éviter une marge à droite supplémentaire */
+.tablinks:last-child {
+    margin-right: 0;
+}
+#agence{
+    background-color: #fff; /* Fond blanc pour la lisibilité */
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1; 
+    
+}
+#gare{
+    position: absolute;
+    z-index: 1;
+    left: 75%;
+    top: 17%;
+    background-color: #fff;
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    padding: 10px;
+    padding-left: 38px;
+        }
+    #aéroport{
+        position: absolute;
+        background-color: #fff;
+        width: 200px;
+        height: 60px;
+        text-align: center;
+        padding: 10px;
+        padding-left: 38px;
+    }
+
+#managers{
+    position: absolute;
+        z-index: 1;
+        background-color: #fff;
+        width: 250px;
+        height: 100px;
+        left: 90%;
+
+        }
+#bouttons{
+    text-align: center;
+    color: #fff;
+    font-size: 40px;
+    font-family:'Times New Roman', Times, serif;
+
+}
+a{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 91%;
+}
+#imgannule{
+    position: absolute;
+    top: 0px;
+    width: 50px;
+    height: 50px;
+    left: 50%;
+
+}
+
+#infosAgenceContainer{
+            position: absolute;
+            display: none;
+            z-index: 1;
+            height: 400px;
+            width: 1100px;
+            background-color:rgb(240, 240, 240);
+            top: 17%;
+            left: 20%;
+            font-family:'Times New Roman', Times, serif;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow O.3s ease;
+
+        }
+        #infosAgenceContainer:hover{
+            color:darkblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+       
+        input{
+            width: 200px;
+            height: 40px;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+        select{
+            position: absolute;
+            width: 200px;
+            height: 40px;
+            border-radius: 10px;
+            left: 50%;
+            top: 42%;
+            font-size: 20px;
+            font-family:'Times New Roman', Times, serif;
+
+
+        }
+        #label{
+            position: absolute;
+            width: 200px;
+            height: 40px;
+            border-radius: 10px;
+            left: 10%;
+            top: 42%;
+            font-size: 20px;
+            font-family:'Times New Roman', Times, serif;
+        }
+        #nom{
+            position: absolute;
+            height: 40px;
+            left: 10%;
+            top: 30%;
+            font-family:'Times New Roman', Times, serif;
+
+        }
+        #telephone{
+            position: absolute;
+            height: 40px;
+            left: 31%;
+            top: 30%;
+            font-family:'Times New Roman', Times, serif;
+
+        }
+        
+        #destination{
+            position: absolute;
+            height: 40px;
+            left: 52%;
+            top: 30%;
+            font-family:'Times New Roman', Times, serif;
+
+        }
+        #occasion{
+            position: absolute;
+            height: 40px;
+            top: 56%;
+            left: 31%;
+            font-family:'Times New Roman', Times, serif;
+
+            
+        }
+        #type{
+            height: 40px;
+            position: absolute;
+            font-family:'Times New Roman', Times, serif;
+            top: 56%;
+            left: 52%;
+            
+        }
+        #label{
+            position: absolute;
+            background-color: #fff;
+            top: 56%;
+            left: 10%;
+            font-family:'Times New Roman', Times, serif;
+        }
+        #envoyer{
+            position: absolute;
+            top: 80%;
+            left: 12%;
+            font-family:'Times New Roman', Times, serif;
+            background-color: blue;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow O.3s ease;
+        }
+        #envoyer:hover{
+            color:darkblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+        #annuler{
+            position: absolute;
+            top: 80%;
+            left: 35%;
+            font-family:'Times New Roman', Times, serif;
+            background-color: brown;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow O.3s ease;
+        }
+        #annuler:hover{
+            color:darkblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+        #transaction{
+            position: absolute;
+            height: 40px;
+            left: 73%;
+            top: 30%;
+            font-family:'Times New Roman', Times, serif;
+        }
+        #montant{
+            position: absolute;
+            height: 40px;
+            left: 73%;
+            top: 56%;
+            font-family:'Times New Roman', Times, serif;
+        }
+        
+    </style>
+</html>
